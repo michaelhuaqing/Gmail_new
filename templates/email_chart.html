@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/static/css/jquery.jqtimeline.css">
+	<script src="/static/js/jquery-1.9.0.min.js"></script>
+	<script src="/static/js/jquery.jqtimeline.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}" class="active"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">邮件统计图</a>
+			<span>&gt;</span>
+			饼状图的展示
+		</div>
+		<!-- End Small Nav -->
+        
+        
+        
+              
+<!--piechart的实现-->  
+<script>      
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Browser market shares at a specific website, 2010'
+        },
+        tooltip: {
+    	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            data: [
+                ['Firefox',   45.0],
+                ['IE',       26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari',    8.5],
+                ['Opera',     6.2],
+                ['Others',   0.7]
+            ]
+        }]
+    });
+});
+</script>
+<!--piechart的实现-->  
+<script src="/static/js/highcharts.js"></script>
+<script src="/static/js/modules/exporting.js"></script>
+		
+		<br />
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

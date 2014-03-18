@@ -1,0 +1,52 @@
+X-QQ-SSF: 00010000000000F000000000000000H
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 202.121.96.107
+X-QQ-STYLE: 
+X-QQ-mid: webmail639t1385983676t8568644
+From: "=?ISO-8859-1?B?TWNYaW4g?=" <mcx_221@foxmail.com>
+To: "=?ISO-8859-1?B?bWN4XzIyMUBxcS5jb20=?=" <mcx_221@qq.com>
+Subject: hello
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_529C6EBC_08E3E048_423D5A66"
+Content-Transfer-Encoding: 8Bit
+Date: Mon, 2 Dec 2013 19:27:56 +0800
+X-Priority: 3
+Message-ID: <tencent_757E056B0CC2D80C105401EB@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_529C6EBC_08E3E048_423D5A66
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_529C6EBC_08E3E048_3BE2C1C0";
+
+------=_NextPart_529C6EBC_08E3E048_3BE2C1C0
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
+
+
+------=_NextPart_529C6EBC_08E3E048_3BE2C1C0
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
+
+PGJyPg==
+
+------=_NextPart_529C6EBC_08E3E048_3BE2C1C0--
+
+------=_NextPart_529C6EBC_08E3E048_423D5A66
+Content-Type: application/octet-stream;
+	charset="ISO-8859-1";
+	name="hello.txt"
+Content-Disposition: attachment; filename="hello.txt"
+Content-Transfer-Encoding: base64
+
+SSdtIGEgYXR0YWNobWVudAo=
+
+------=_NextPart_529C6EBC_08E3E048_423D5A66--
+

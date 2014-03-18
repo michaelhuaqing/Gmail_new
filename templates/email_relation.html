@@ -1,0 +1,31 @@
+<head>
+    <script type="text/javascript" src="/static/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/network.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/timeline.css">
+    <script>
+        $(document).ready(function() {
+            // see http://almende.github.io/chap-links-library/js/network/doc/
+            // Instantiate our graph object.
+            network = new links.Network(document.getElementById('mynetwork'));
+
+            var options = {
+                'width': '100%',
+                'height': '100%',
+                'links': {
+                    'length': 300
+                },
+                'stabilize': true
+            };
+
+            $.getJSON('{% url "email_relation_json" %}', function(data){
+                $(data.links).each(function(idx, ele){
+                    ele.style = 'arrow-end';
+                });
+                network.draw(data.nodes, data.links, options);
+            })
+        });
+    </script>
+</head>
+<body>  
+    <div id="mynetwork"></div>
+</body>

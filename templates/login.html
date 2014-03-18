@@ -1,0 +1,60 @@
+﻿<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head><title>登陆界面</title>
+<meta content="text/html; charset=utf-8" http-equiv=content-type>
+<style type="text/css">
+a: link{color: #ffffff;font-size: 12px;text-decoration: none}
+a: visited{color: #ffffff;font-size: 12px;text-decoration: none}
+a: hover{color: #ffffff}
+body input{margin-top: 2px;font: 12px "微软雅黑";}
+td{line-height: 15px;font-size: 12px}
+</style>
+</head>
+<body>
+<div align=center><br><br><br><br><br>
+<table id=__01 border=0 cellspacing=1 cellpadding=0 width=668 align=center>
+  <tbody>
+  <tr>
+    <td>
+      <table border=0 cellspacing=1 cellpadding=0 width="667" background="/static/css/images/login.jpg" height="408">
+        <tbody>
+        <tr>
+          <td>
+            <p><br><br><br><br><br><br><br><br></p>
+            <p>　</p>
+            <p>　</p>
+            <p>　</p>
+            <table border=0 cellspacing=0 cellpadding=2 width=660>
+              <form method=post name=form1>{% csrf_token %}
+              <tbody>
+              <tr>
+                <td height=25 width="37%">
+                  <div align=right>帐号：</div></td>
+                <td width="63%">
+                  <div align=left>{{ form.username }}</div></td></tr>
+              <tr>
+                <td height=25>
+                  <div align=right>密码：</div></td>
+                <td>
+                  <div align=left>{{ form.password }}</div></td></tr>
+              <tr>
+                <td height=37>
+                  <div align=left></div></td>
+                <td>
+                  <div align=left><p><input value=登陆系统 type=submit name=b1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input value=重置信息 type=reset name=b2></p></div>
+				</td>
+			</tr>
+			</form>
+		</tbody>
+	</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

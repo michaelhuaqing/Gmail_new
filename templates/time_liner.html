@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+    
+
+
+
+<!--时间轴特效-->
+<style type="text/css">
+#timeline {width: 760px;height: 300px;overflow: hidden;margin: 100px auto;position: relative;background: url('/static/css/images/dot.gif') left 45px repeat-x;}
+#dates {width: 760px;height: 60px;overflow: hidden;}
+#dates li {list-style: none;float: left;width: 100px;height: 50px;font-size: 24px;text-align: center;background: url('/static/css/images/biggerdot.png') center bottom no-repeat;}
+#dates a {line-height: 38px;padding-bottom: 10px;}
+#dates .selected {font-size: 38px;}
+#issues {width: 760px;height: 300px;overflow: hidden;}	
+#issues li {width: 760px;height: 300px;list-style: none;float: left;}
+#issues li h1 {color: #ffcc00;font-size: 42px;margin: 20px 0;text-shadow: #000 1px 1px 2px;}
+#issues li p {font-size: 14px;margin-right: 70px; margin:10px; font-weight: normal;line-height: 22px;}
+</style>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.timelinr-0.9.53.js"></script>
+<script type="text/javascript">
+$(function(){
+    $().timelinr({
+		autoPlay: 'true',
+		autoPlayDirection: 'forward',
+		startAt: 4
+	})
+});
+</script>
+
+<!--日历特效-->
+  <link rel="stylesheet" href="/static/css/jquery-ui.css">
+  <script src="/static/js/jquery-1.9.1.js"></script>
+  <script src="/static/js/jquery-ui.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>  
+
+  
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}" class="active"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">事件时间轴</a>
+			<span>&gt;</span>
+			时间轴展示            
+		</div>
+		<!-- End Small Nav -->
+        
+        
+<p>Date: <input type="text" id="datepicker"></p>
+            
+        
+<!--TimeLiner时间轴的实现-->        
+<div id="timeline">
+   <ul id="dates">
+   <li><a href="time_liner_day.html">1月</a></li>
+   <li><a href="time_liner_day.html">2月</a></li>
+   <li><a href="time_liner_day.html">3月</a></li>
+   <li><a href="time_liner_day.html">4月</a></li>
+   <li><a href="time_liner_day.html">5月</a></li>
+   <li><a href="time_liner_day.html">6月</a></li>
+   <li><a href="time_liner_day.html">7月</a></li>
+   <li><a href="time_liner_day.html">8月</a></li>
+   <li><a href="time_liner_day.html">9月</a></li>
+   <li><a href="time_liner_day.html">10月</a></li>
+   <li><a href="time_liner_day.html">11月</a></li>
+   <li><a href="time_liner_day.html">12月</a></li>
+   </ul>
+   
+   <ul id="issues">
+      <li id="1">
+				<h1>1月</h1>
+				<p>1月共有邮件{{number}}封</p>
+			</li>
+            <li id="2">
+				<h1>2月</h1>
+				<p>2月共有邮件{{number}}封</p>
+			</li>      
+            <li id="3">
+				<h1>3月</h1>
+				<p>3月共有邮件{{number}}封</p>
+			</li>
+            <li id="4">
+				<h1>4月</h1>
+				<p>4月共有邮件{{number}}封</p>
+			</li>
+            <li id="5">
+				<h1>5月</h1>
+				<p>5月共有邮件{{number}}封</p>
+			</li>
+            <li id="6">
+				<h1>6月</h1>
+				<p>6月共有邮件{{number}}封</p>
+			</li>
+                        <li id="7">
+				<h1>7月</h1>
+				<p>7月共有邮件{{number}}封</p>
+			</li>
+                        <li id="8">
+				<h1>8月</h1>
+				<p>8月共有邮件{{number}}封</p>
+			</li>
+                        <li id="9">
+				<h1>9月</h1>
+				<p>9月共有邮件{{number}}封</p>
+			</li>
+                        <li id="10">
+				<h1>10月</h1>
+				<p>10月共有邮件{{number}}封</p>
+			</li>
+                        <li id="11">
+				<h1>11月</h1>
+				<p>11月共有邮件{{number}}封</p>
+			</li>
+                        <li id="12">
+				<h1>12月</h1>
+				<p>12月共有邮件{{number}}封</p>
+			</li>
+   </ul>
+<!--TimeLiner时间轴的实现-->  
+        
+        
+		
+		<br />
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

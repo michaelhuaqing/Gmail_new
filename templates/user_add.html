@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"  class="active"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="{% url 'user_add' %}">用户管理</a>
+			<span>&gt;</span>
+			添加用户
+		</div>
+		<!-- End Small Nav -->
+        
+        
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>添加新用户</h2>
+					</div>
+					<!-- End Box Head -->
+					
+                    <form action="{% url 'user_add'%}" method="post">{% csrf_token %}
+                        <!-- Form --> 
+						<div class="form">
+								<p>
+                                <label>新用户名</label>{{ form.username.errors }}
+									{{ form.username }}
+								</p>	
+								<p>
+									<label>初始密码</label>{{ form.password1.errors }}
+									{{ form.password1 }}
+								</p>	
+                                <p>
+									<label>密码确认</label>{{ form.password2.errors }}
+									{{ form.password2 }}
+								</p>
+                                <p>
+									<label>超级用户</label>{{ form.is_superuser.errors }}
+									{{ form.is_superuser }}
+								</p>	
+							
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="submit" class="button" value="提交" />
+                            <input type="reset" class="button" value="重置"  />
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+
+			</div>
+			<!-- End Content -->
+            
+            
+			
+
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

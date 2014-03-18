@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"  class="active"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">用户管理</a>
+			<span>&gt;</span>
+			当前用户
+		</div>
+		<!-- End Small Nav -->
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">当前用户</h2>
+						<div class="right">
+							<label>查询用户</label>
+							<input type="text" class="field small-field" />
+							<input type="submit" class="button" value="搜索" />
+						</div>
+					</div>
+					<!-- End Box Head -->	
+
+					<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<th width="13"><input type="checkbox" class="checkbox" /></th>
+								<th>用户名</th>
+                                <th>用户密码</th>
+								<th>用户权限</th>
+								<th width="110" class="ac">用户操作</th>
+							</tr>
+                            {% for e in users %}
+                            <tr>
+								<td><input type="checkbox" class="checkbox" /></td>
+								<td>{{ e.user }}</a></td>
+                                <td>{{ e.password }}</td>
+                                <td>{{ e.is_superuser }}</td>
+								<td><a href="{% url 'delete_user' e.user %}" class="ico del">Delete</a><a href="{% url 'not_implemented' %}" class="ico edit">Edit</a></td>
+							</tr>
+                            {% endfor %}						
+						</table>
+						
+						
+						<!-- Pagging -->
+					    <div class="pagination">
+    					<span class="step-links">
+        				{% if emails.has_previous %}
+            			<a href="?page={{ emails.previous_page_number }}">previous</a>
+        				{% endif %}
+
+        				<span class="current">
+            			{% if emails.paginator.num_pages > 1%}
+               			Page {{ emails.number }} of {{ emails.paginator.num_pages }}.
+            			{% endif %}
+       					</span>
+                        {% if emails.has_next %}
+            			<a href="?page={{ emails.next_page_number }}">next</a>
+        				{% endif %}
+    					</span>
+						</div>
+						<!-- End Pagging -->
+						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>管理操作</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<a href="{% url 'user_add' %}" class="add-button"><span>添加用户</span></a>
+						<div class="cl">&nbsp;</div>
+						
+						<!-- Sort -->
+						<div class="sort">
+							<label>用户查询</label>
+                            用户名
+                            <input type="text" class="field" />
+							管理权限
+                            <select class="field">
+                               <option value="normaluser">普通用户</option>
+                               <option value="superuser">管理员</option>
+                            </select>                                                       
+                            <a href="#" class="search-button"><span>查询</span></a>
+						<div class="cl">&nbsp;</div>
+						</div>
+						<!-- End Sort -->
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

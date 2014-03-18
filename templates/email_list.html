@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+   <script type="text/javascript" src="/static/js/search.js"></script>
+</head>
+
+<style>
+  body {font-size:12px}
+  td {text-align:center}
+  h1 {font-size:26px;}
+  h4 {font-size:16px;}
+  em {color:#999; margin:0 10px; font-size:11px; display:block}
+</style>
+	
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}" class="active"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'email_relation' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+			
+			
+
+
+<table border="0" width="40%">
+<tr>
+<td><a href="javascript:displaylist()"><span id=advtext>邮件全局搜索查询</span></a></td>
+</tr>
+</table>
+<table id=adv border="1" width="40%" style="display:none">
+<tr height=60>
+<td align="left">
+<form name="input" action="" method="get">
+<p>全局搜索：<input type="text" name="search" /></p>
+<p>
+<input type="checkbox" name="box" id="box1" value="正文" />正文
+<input type="checkbox" name="box" id="box2" value="标题" />标题
+<input type="checkbox" name="box" id="box3" value="摘要" />摘要
+<input type="checkbox" name="box" id="box3" value="发信人" />发信人
+<input type="checkbox" name="box" id="box4" value="收信人" />收信人
+<input type="checkbox" name="box" id="box5" value="抄送" />抄送
+<input type="checkbox" name="box" id="box6" value="密送" />密送
+<input type="checkbox" name="box" id="box7" value="附件" />附件
+</p>
+<p>
+查询时间：
+<input type="text" name="time_from" style="width:70px" onfocus="HS_setDate(this)">
+到
+<input type="text" name="time_to" style="width:70px" onfocus="HS_setDate(this)">
+</p>
+<p>
+<input type="checkbox" name="all" id="all" onclick="checkall()" value="全选"/>全选
+<input type="checkbox" name="none" id="none" onclick="uncheckall()" value="取消全选" />取消全选
+<input type="reset"	name="reset" value="重置"/>
+<input type="button" name="query" id="query" onclick="checkbox()" value="查询" />
+</p>
+</form>
+</td>
+</tr>
+</table>
+	
+			
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- LeftSideBar -->
+			
+			<div id="leftbar___">
+                <ul>
+                    {% for folder in folders%}
+                    <li><a href="{% url 'email_list' folder %}">{{ folder }}</a></li>
+                    {% endfor %}
+                </ul>
+			</div>	
+
+			<!-- Content -->
+			<div id="content">			
+				<!-- Box -->
+				<div class="box">		
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">当前邮件</h2>
+					</div>
+					<!-- End Box Head -->	
+					
+
+					<!-- Table -->
+					<div class="table">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<!--<th width="13"><input type="checkbox" class="checkbox" /></th>-->
+								<th>发信人</th>
+								<th>收件人</th>
+								<th>抄送</th>
+								<th>密送</th>
+								<th>标题</th>
+								<th>正文摘要</th>
+								<th>时间</th>
+                                {% if user.is_superuser %}
+								<th>邮件管理人</th>
+                                {% endif %}
+                        <th>附件名字</th>
+								<th width="110" class="ac">邮件操作</th>
+							</tr>
+                            {% for e in emails %}
+                        <tr>
+								<!--<td><input type="checkbox" class="checkbox" /></td>-->
+								<td>{{e.from}}</td>
+								<td>{{e.to}}</td>
+								<td>抄送</td>
+								<td>密送</td>
+								<td><h3><a href="{% url 'email_detail' e.id %}">{{e.subject |default:e.id}}</a></h3></td>
+								<td>{{e.bodytxt}}</td>
+								<td>{% if e.date %}{{ e.date | date:"d/m/Y G:i"  }}{% else %}&nbsp;&nbsp;{% endif %}</td>
+                                {% if user.is_superuser %}
+                                <td>{{ e.owner.username }}</td>
+                        		  {% endif %}
+                        <td>{{e.attachments}}</td>
+								<td align="center"><a href="{% url 'delete_email' e.id %}" class="ico del">Delete</a></td>
+							   </tr>
+                            {% endfor %}
+						</table>					
+						
+						<!-- Pagging -->
+                        {% if is_paginated %}
+                        <div class="pagination">
+                            <span class="step-links">
+                            {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                            {% if page_obj.page_obj.num_pages > 1%}
+                            Page {{ page_obj.number }} of {{ page_obj.page_obj.num_pages }}.
+                            {% endif %}
+                            </span>
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            {% endif %}
+                            </span>
+						</div>
+                        {% endif %}
+						<!-- End Pagging -->
+						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->
+
+			</div>
+			<!-- End Content -->
+					
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

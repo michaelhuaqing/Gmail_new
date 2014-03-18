@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" media="all" />
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1>后台邮件管理</h1>
+			<div id="top-navigation">
+				欢迎 <a href="{% url 'user_edit' %}"><strong>{{ user.username }}</strong></a>
+				<span>|</span>
+				<a href="{% url 'logout' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'user_add' %}"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件关系图</span></a></li>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+    
+    	<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">新邮件</a>
+			<span>&gt;</span>
+			邮件编辑
+		</div>
+		<!-- End Small Nav -->
+
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>邮件详细信息</h2>
+					</div>
+					<!-- End Box Head -->
+					
+					<form action="" method="post">
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<label>邮件主题 </label>
+                                    {{ email.subject }}
+								</p>	
+								<p>
+									<label>发件人</label>
+                                    <td>{{ email.from_ }}</td>
+                                </p>
+                                <p>
+                                    <label>收件人</label>
+                                    <td>{{ email.to }}</td>
+								</p>
+                                
+                                <p>
+                                	{% if email.attachments %}
+                                    <label>附件</label>
+                                	{% for attach in email.attachments %}
+    								<td><a href={{ attach.url }}>{{ attach.filename }}</a></td>
+									{% endfor %}
+									{% endif %}
+                                </p>
+                                <p>
+                                <a href="{{ email.source.url }}"> source </a>
+                                </p>
+								<p>
+									<label>邮件内容</label>
+								    {%if email.body%}{{ email.body |safe }}{%endif%}
+								</p>	
+							
+						</div>
+						<!-- End Form -->
+						
+					</form>
+				</div>
+				<!-- End Box -->
+
+			</div>
+			<!-- End Content -->
+			
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

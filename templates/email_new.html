@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>邮件后台管理</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#">后台邮件管理</a></h1>
+			<div id="top-navigation">
+				欢迎 <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#">帮助</a>
+				<span>|</span>
+				<a href="#">设置</a>
+				<span>|</span>
+				<a href="{% url 'login' %}">退出</a>
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="{% url 'email_list' %}"><span>邮件管理</span></a></li>
+			    <li><a href="{% url 'not_implemented' %}" class="active"><span>新邮件</span></a></li>
+			    <li><a href="{% url 'user_add' %}"><span>用户管理</span></a></li>
+                <li><a href="{% url 'email_timeline' %}"><span>事件时间轴</span></a></li>
+                <li><a href="{% url 'not_implemented' %}"><span>邮件统计图</span></a></li>
+			</li>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+    
+    	<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">新邮件</a>
+			<span>&gt;</span>
+			邮件编辑
+		</div>
+		<!-- End Small Nav -->
+
+		
+		<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>添加新邮件</h2>
+					</div>
+					<!-- End Box Head -->
+					
+					<form action="" method="post">
+						
+						<!-- Form -->
+						<div class="form">
+								<p>
+									<span class="req">max 100 symbols</span>
+									<label>邮件主题 </label>
+									<input type="text" class="field size1" />
+								</p>	
+								<p class="inline-field">
+									<label>日期</label>
+									<select class="field size2">
+										<option value="">23</option>
+									</select>
+									<select class="field size3">
+										<option value="">July</option>
+									</select>
+									<select class="field size3">
+										<option value="">2009</option>
+									</select>
+								</p>
+								
+								<p>
+									<span class="req">max 100 symbols</span>
+									<label>内容</label>
+									<textarea class="field size1" rows="10" cols="30"></textarea>
+								</p>	
+							
+						</div>
+						<!-- End Form -->
+						
+						<!-- Form Buttons -->
+						<div class="buttons">
+							<input type="button" class="button" value="preview" />
+							<input type="submit" class="button" value="submit" />
+						</div>
+						<!-- End Form Buttons -->
+					</form>
+				</div>
+				<!-- End Box -->
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>管理操作</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<div class="box-content">
+						<a href="#" class="add-button"><span>添加新邮件</span></a>
+						<div class="cl">&nbsp;</div>
+						
+						<p class="select-all"><input type="checkbox" class="checkbox" /><label>选中所有</label></p>
+						<p><a href="#">删除选中</a></p>
+						
+						<!-- Sort -->
+						<div class="sort">
+							<label>分类查询</label>
+							<select class="field">
+								<option value="">邮件主题</option>
+							</select>
+                            <select class="field">
+								<option value="">IP地址</option>
+							</select>
+							<select class="field">
+								<option value="">发送时间</option>
+							</select>
+							<select class="field">
+								<option value="">邮件管理人</option>
+							</select>
+                            <a href="#" class="search-button"><span>多关键字查询</span></a>
+						<div class="cl">&nbsp;</div>
+						</div>
+						<!-- End Sort -->
+						
+					</div>
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>
